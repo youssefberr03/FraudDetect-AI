@@ -1,0 +1,83 @@
+
+# ==========================================
+# FRAUDDETECT AI - Git Ignore Configuration
+# ==========================================
+
+# 1. Environnements virtuels Python
+.venv/
+venv/
+env/
+
+# 2. Fichiers temporaires Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# 3. Datasets bruts et pretraites
+/data/raw/*
+/data/processed/*
+
+# Conserver la documentation des datasets
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
+
+# 4. Modeles experimentaux
+/models/**/*.joblib
+/models/**/*.pkl
+/models/**/*.pickle
+/models/**/*.keras
+/models/**/*.h5
+/models/xgboost/*.json
+/models/optimized/**/optimized_model.json
+
+# Les fichiers best_parameters.json
+# restent disponibles sur GitHub.
+
+# 5. Predictions individuelles
+/reports/**/test_predictions.csv
+
+# 6. Resultats intermediaires volumineux
+/reports/threshold_tuning/*_thresholds.csv
+/reports/threshold_tuning/all_operating_points.csv
+
+# 7. Fichiers de configuration sensibles
+.env
+.env.*
+!.env.example
+
+# 8. IDE et editeurs
+.vscode/
+.idea/
+*.iml
+
+# 9. Fichiers systeme
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 10. Fichiers temporaires LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# 11. Fichiers temporaires divers
+*.tmp
+*.bak
+*.swp
+
+# IMPORTANT :
+# Le dossier exports/ reste disponible.
+# Il contient notre modele definitif.
+/exports/frauddetect_v1/model.joblib
+/exports/frauddetect_v1/scaler.joblib

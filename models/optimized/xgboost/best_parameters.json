@@ -1,0 +1,19 @@
+{
+    "parameters": {
+        "colsample_bytree": 0.6783931449676581,
+        "gamma": 0,
+        "learning_rate": 0.1780383803110714,
+        "max_depth": 8,
+        "min_child_weight": 10,
+        "reg_alpha": 1,
+        "reg_lambda": 1.1272058498680244,
+        "subsample": 0.9314950036607718,
+        "weight_multiplier": 0.05
+    },
+    "n_estimators": 26,
+    "scale_pos_weight": 29.951208459214502,
+    "mean_cv_ap": 0.8239203499242134,
+    "std_cv_ap": 0.02861181490120315,
+    "training_time": 0.7778977999696508,
+    "classification_threshold": 0.5
+}

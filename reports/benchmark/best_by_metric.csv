@@ -1,0 +1,7 @@
+Metric,Algorithm,Strategy,Score
+Accuracy,Random Forest,original,0.9995770577316196
+Precision,Random Forest,original,0.9818181818181818
+Recall,Logistic Regression,balanced,0.8873239436619719
+F1,Random Forest,original,0.8571428571428571
+ROC_AUC,XGBoost,oversampling,0.9831617742607026
+Average_Precision,XGBoost,balanced,0.8524204358016801

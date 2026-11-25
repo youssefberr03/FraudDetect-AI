@@ -1,0 +1,8 @@
+Model_Name,Algorithm,Strategy,Model_Path,Average_Precision,F1,Recall,Precision,Reasons
+XGBoost - balanced,XGBoost,balanced,models\xgboost\balanced.joblib,0.8524204358016801,0.84375,0.7605633802816901,0.9473684210526316,['Top 5 Average Precision']
+Random Forest - balanced,Random Forest,balanced,models\random_forest\balanced.joblib,0.8482803737210267,0.8346456692913385,0.7464788732394366,0.9464285714285714,['Top 5 Average Precision']
+Random Forest - smote,Random Forest,smote,models\random_forest\smote.joblib,0.8397808190629084,0.8527131782945736,0.7746478873239436,0.9482758620689656,['Top 5 Average Precision']
+Random Forest - oversampling,Random Forest,oversampling,models\random_forest\oversampling.joblib,0.8367232504010964,0.84375,0.7605633802816901,0.9473684210526316,['Top 5 Average Precision']
+XGBoost - original,XGBoost,original,models\xgboost\original.joblib,0.831959273760127,0.848,0.7464788732394366,0.9814814814814816,['Top 5 Average Precision']
+Random Forest - optimized,Random Forest,optimized,models\optimized\random_forest\optimized_model.joblib,0.8282462926532778,0.8571428571428571,0.7605633802816901,0.9818181818181818,['Best F1-score']
+Logistic Regression - balanced,Logistic Regression,balanced,models\logistic_regression\balanced.joblib,0.6970029894732382,0.0961098398169336,0.8873239436619719,0.0508064516129032,['Best Recall']

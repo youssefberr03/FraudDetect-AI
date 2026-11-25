@@ -1,0 +1,147 @@
+{
+    "total_models": 31,
+    "total_algorithms": 6,
+    "baseline_models": 28,
+    "optimized_models": 3,
+    "available_model_files": 31,
+    "primary_metric": "Average Precision",
+    "evaluation_dataset": "validation",
+    "test_set_used": false,
+    "best_ap_model": {
+        "name": "XGBoost - balanced",
+        "algorithm": "XGBoost",
+        "strategy": "balanced",
+        "average_precision": 0.8524204358016801,
+        "precision": 0.9473684210526316,
+        "recall": 0.7605633802816901,
+        "f1": 0.84375,
+        "model_path": "models\\xgboost\\balanced.joblib",
+        "available": true
+    },
+    "best_f1_model": {
+        "name": "Random Forest - optimized",
+        "algorithm": "Random Forest",
+        "strategy": "optimized",
+        "average_precision": 0.8282462926532778,
+        "precision": 0.9818181818181818,
+        "recall": 0.7605633802816901,
+        "f1": 0.8571428571428571,
+        "model_path": "models\\optimized\\random_forest\\optimized_model.joblib",
+        "available": true
+    },
+    "best_recall_model": {
+        "name": "Logistic Regression - balanced",
+        "algorithm": "Logistic Regression",
+        "strategy": "balanced",
+        "average_precision": 0.6970029894732382,
+        "precision": 0.0508064516129032,
+        "recall": 0.8873239436619719,
+        "f1": 0.0961098398169336,
+        "model_path": "models\\logistic_regression\\balanced.joblib",
+        "available": true
+    },
+    "best_precision_model": {
+        "name": "Random Forest - optimized",
+        "algorithm": "Random Forest",
+        "strategy": "optimized",
+        "average_precision": 0.8282462926532778,
+        "precision": 0.9818181818181818,
+        "recall": 0.7605633802816901,
+        "f1": 0.8571428571428571,
+        "model_path": "models\\optimized\\random_forest\\optimized_model.joblib",
+        "available": true
+    },
+    "threshold_candidates": [
+        {
+            "Model_Name": "XGBoost - balanced",
+            "Algorithm": "XGBoost",
+            "Strategy": "balanced",
+            "Model_Path": "models\\xgboost\\balanced.joblib",
+            "Average_Precision": 0.8524204358016801,
+            "F1": 0.84375,
+            "Recall": 0.7605633802816901,
+            "Precision": 0.9473684210526316,
+            "Reasons": [
+                "Top 5 Average Precision"
+            ]
+        },
+        {
+            "Model_Name": "Random Forest - balanced",
+            "Algorithm": "Random Forest",
+            "Strategy": "balanced",
+            "Model_Path": "models\\random_forest\\balanced.joblib",
+            "Average_Precision": 0.8482803737210267,
+            "F1": 0.8346456692913385,
+            "Recall": 0.7464788732394366,
+            "Precision": 0.9464285714285714,
+            "Reasons": [
+                "Top 5 Average Precision"
+            ]
+        },
+        {
+            "Model_Name": "Random Forest - smote",
+            "Algorithm": "Random Forest",
+            "Strategy": "smote",
+            "Model_Path": "models\\random_forest\\smote.joblib",
+            "Average_Precision": 0.8397808190629084,
+            "F1": 0.8527131782945736,
+            "Recall": 0.7746478873239436,
+            "Precision": 0.9482758620689656,
+            "Reasons": [
+                "Top 5 Average Precision"
+            ]
+        },
+        {
+            "Model_Name": "Random Forest - oversampling",
+            "Algorithm": "Random Forest",
+            "Strategy": "oversampling",
+            "Model_Path": "models\\random_forest\\oversampling.joblib",
+            "Average_Precision": 0.8367232504010964,
+            "F1": 0.84375,
+            "Recall": 0.7605633802816901,
+            "Precision": 0.9473684210526316,
+            "Reasons": [
+                "Top 5 Average Precision"
+            ]
+        },
+        {
+            "Model_Name": "XGBoost - original",
+            "Algorithm": "XGBoost",
+            "Strategy": "original",
+            "Model_Path": "models\\xgboost\\original.joblib",
+            "Average_Precision": 0.831959273760127,
+            "F1": 0.848,
+            "Recall": 0.7464788732394366,
+            "Precision": 0.9814814814814816,
+            "Reasons": [
+                "Top 5 Average Precision"
+            ]
+        },
+        {
+            "Model_Name": "Random Forest - optimized",
+            "Algorithm": "Random Forest",
+            "Strategy": "optimized",
+            "Model_Path": "models\\optimized\\random_forest\\optimized_model.joblib",
+            "Average_Precision": 0.8282462926532778,
+            "F1": 0.8571428571428571,
+            "Recall": 0.7605633802816901,
+            "Precision": 0.9818181818181818,
+            "Reasons": [
+                "Best F1-score"
+            ]
+        },
+        {
+            "Model_Name": "Logistic Regression - balanced",
+            "Algorithm": "Logistic Regression",
+            "Strategy": "balanced",
+            "Model_Path": "models\\logistic_regression\\balanced.joblib",
+            "Average_Precision": 0.6970029894732382,
+            "F1": 0.0961098398169336,
+            "Recall": 0.8873239436619719,
+            "Precision": 0.0508064516129032,
+            "Reasons": [
+                "Best Recall"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+Layer,Input_Neurons,Output_Neurons,Weights,Biases,Parameters
+1,30,64,1920,64,1984
+2,64,32,2048,32,2080
+3,32,16,512,16,528
+4,16,1,16,1,17

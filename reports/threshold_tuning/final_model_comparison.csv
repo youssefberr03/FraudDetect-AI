@@ -1,0 +1,3 @@
+Threshold,Precision,Recall,F1,F2,False_Positive_Rate,True_Positives,True_Negatives,False_Positives,False_Negatives,Alerts,Total_Cost,Strategy,Model_Name,Model_Path,Average_Precision
+0.5,0.9464285714285714,0.7464788732394366,0.8346456692913385,0.7794117647058824,7.060817171907362e-05,53.0,42485.0,3.0,18.0,56.0,9015.0,Default,Random Forest - balanced,models\random_forest\balanced.joblib,0.8482803737210267
+0.24577759681610986,0.8082191780821918,0.8309859154929577,0.8194444444444444,0.8263305322128851,0.0003295048013556769,59.0,42474.0,14.0,12.0,73.0,6070.0,Best F2,Random Forest - balanced,models\random_forest\balanced.joblib,0.8482803737210267

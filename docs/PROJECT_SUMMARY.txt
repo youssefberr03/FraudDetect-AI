@@ -1,0 +1,428 @@
+# FRAUDDETECT AI
+Détection des fraudes bancaires par Machine Learning
+
+Version : 1.0.0
+Date : Novembre 2026
+Type : Projet personnel — Data Science & Machine Learning
+
+==================================================
+**1. PRÉSENTATION DU PROJET**
+==================================================
+
+FraudDetect AI est un projet de Machine Learning consacré à la détection automatique des transactions bancaires frauduleuses.
+
+L'objectif est de comparer plusieurs algorithmes de classification, d'étudier différentes stratégies de gestion du déséquilibre des classes et de sélectionner un modèle capable de détecter un maximum de fraudes tout en limitant les fausses alertes.
+
+Le projet couvre l'ensemble du processus de développement d'un modèle de Machine Learning, depuis l'exploration des données jusqu'à l'exportation du modèle définitif.
+
+==================================================
+**2. PRÉSENTATION DU DATASET**
+==================================================
+
+Dataset : Credit Card Fraud Detection
+
+- Nombre initial de transactions : 284 807
+- Transactions légitimes : 284 315
+- Transactions frauduleuses : 492
+- Pourcentage de fraudes : environ 0,173 %
+- Nombre de variables prédictives : 30
+- Nombre de variables cibles : 1
+
+Les variables disponibles sont :
+
+- Time : temps écoulé depuis la première transaction.
+- Amount : montant de la transaction.
+- V1 à V28 : composants anonymisés issus d'une transformation PCA.
+- Class : variable cible de classification.
+
+Valeurs de la variable Class :
+
+- 0 : transaction légitime.
+- 1 : transaction frauduleuse.
+
+Le principal défi du dataset réside dans son fort déséquilibre entre les transactions légitimes et frauduleuses.
+
+==================================================
+**3. ANALYSE EXPLORATOIRE DES DONNÉES**
+==================================================
+
+Une phase d'analyse exploratoire a été réalisée afin de comprendre les caractéristiques du dataset.
+
+Les analyses comprennent :
+
+- Vérification de la structure des données.
+- Identification des valeurs manquantes.
+- Étude de la distribution des classes.
+- Analyse des montants des transactions.
+- Étude des corrélations entre les variables.
+- Identification des variables associées à la fraude.
+- Génération de visualisations statistiques.
+
+Cette phase a notamment mis en évidence les limites de l'Accuracy comme métrique principale dans un problème de classification fortement déséquilibré.
+
+==================================================
+**4. PRÉTRAITEMENT DES DONNÉES**
+==================================================
+
+Les données ont été préparées avant l'entraînement des modèles.
+
+Le dataset a été séparé en trois ensembles :
+
+- Training Set : 198 608 transactions.
+- Validation Set : 42 559 transactions.
+- Test Set : 42 559 transactions.
+
+Le Training Set est utilisé pour l'apprentissage des modèles.
+
+Le Validation Set est utilisé pour comparer les modèles, sélectionner les configurations et optimiser le seuil de décision.
+
+Le Test Set est réservé à l'évaluation finale.
+
+Les transformations de prétraitement et leur configuration sont définies dans le fichier ml/preprocessing.py.
+
+Un objet scaler a également été sauvegardé au format Joblib.
+
+==================================================
+**5. GESTION DU DÉSÉQUILIBRE DES CLASSES**
+==================================================
+
+Cinq stratégies expérimentales ont été étudiées.
+
+**Original**
+
+Entraînement sur les données sans modification de la distribution des classes.
+
+**Balanced**
+
+Pondération des classes afin d'accorder davantage d'importance aux transactions frauduleuses pendant l'apprentissage.
+
+**Random Undersampling**
+
+Réduction du nombre de transactions légitimes afin de diminuer le déséquilibre.
+
+**Random Oversampling**
+
+Duplication de transactions frauduleuses afin d'augmenter la représentation de la classe minoritaire.
+
+**SMOTE**
+
+Génération d'exemples synthétiques de la classe minoritaire à partir des observations existantes.
+
+Les stratégies ont été comparées afin de déterminer leur influence sur les performances de chaque algorithme.
+
+==================================================
+**6. ALGORITHMES DE MACHINE LEARNING**
+==================================================
+
+Six familles d'algorithmes ont été étudiées.
+
+**6.1. Logistic Regression**
+
+Algorithme de classification utilisant une fonction logistique pour estimer un score associé à la classe positive.
+
+**6.2. Decision Tree**
+
+Algorithme construisant un arbre de décision à partir de conditions appliquées aux variables prédictives.
+
+**6.3. K-Nearest Neighbors**
+
+Algorithme réalisant une classification à partir des observations les plus proches d'une transaction.
+
+**6.4. Random Forest**
+
+Algorithme d'ensemble combinant plusieurs arbres de décision afin d'améliorer la robustesse de la classification.
+
+**6.5. XGBoost**
+
+Algorithme de Gradient Boosting construisant successivement des arbres afin de corriger les erreurs des modèles précédents.
+
+**6.6. Neural Network**
+
+Réseau de neurones de type Multilayer Perceptron capable d'apprendre des relations non linéaires entre les variables.
+
+==================================================
+**7. MÉTRIQUES D'ÉVALUATION**
+==================================================
+
+Les modèles ont été évalués selon plusieurs métriques :
+
+- Accuracy.
+- Precision.
+- Recall.
+- F1-score.
+- F2-score.
+- ROC-AUC.
+- Average Precision.
+- Balanced Accuracy.
+- Matthews Correlation Coefficient.
+- Matrice de confusion.
+- Temps de prédiction.
+- Taille du modèle.
+
+L'Average Precision a été privilégiée pour la comparaison globale des capacités de classement des modèles.
+
+Le F2-score a ensuite été utilisé pour sélectionner le modèle et son seuil de décision, car il accorde davantage d'importance au Recall.
+
+==================================================
+**8. BENCHMARK DES MODÈLES**
+==================================================
+
+Nombre de configurations initiales : 28.
+
+Nombre de configurations optimisées : 3.
+
+Nombre total de configurations comparées : 31.
+
+Meilleure Average Precision obtenue par famille d'algorithmes sur le jeu de validation :
+
+| Algorithme | Stratégie | Average Precision |
+|---|---|---:|
+| XGBoost | Balanced | 85,24 % |
+| Random Forest | Balanced | 84,83 % |
+| Neural Network | Oversampling | 80,29 % |
+| KNN | Original | 79,34 % |
+| Decision Tree | Original | 71,62 % |
+| Logistic Regression | Undersampling | 70,65 % |
+
+XGBoost Balanced obtient la meilleure Average Precision sur le jeu de validation avant l'optimisation des seuils.
+
+==================================================
+**9. OPTIMISATION DES HYPERPARAMÈTRES**
+==================================================
+
+Trois algorithmes ont fait l'objet d'une optimisation supplémentaire :
+
+- XGBoost.
+- Random Forest.
+- Neural Network.
+
+Les configurations optimisées ont été comparées aux meilleures configurations initiales.
+
+Résultats en Average Precision :
+
+| Algorithme | Avant | Après |
+|---|---:|---:|
+| XGBoost | 85,24 % | 81,58 % |
+| Random Forest | 84,83 % | 82,83 % |
+| Neural Network | 80,29 % | 71,67 % |
+
+Les optimisations réalisées n'ont pas permis d'améliorer la meilleure Average Precision de chaque famille sur le jeu de validation.
+
+Cette observation montre que l'optimisation des hyperparamètres ne garantit pas systématiquement une amélioration des performances.
+
+Les modèles initiaux ont donc été conservés parmi les candidats à la sélection finale.
+
+==================================================
+**10. OPTIMISATION DU SEUIL DE DÉCISION**
+==================================================
+
+Le seuil de classification utilisé initialement était fixé à 0,5.
+
+Plusieurs stratégies d'optimisation ont été étudiées :
+
+- Seuil par défaut.
+- Maximisation du F1-score.
+- Maximisation du F2-score.
+- Precision minimale de 95 %.
+- Recall minimal de 85 %.
+- Minimisation du coût hypothétique des erreurs.
+
+Le critère principal retenu était la maximisation du F2-score.
+
+Modèle sélectionné : Random Forest Balanced.
+
+Seuil optimisé : environ 0,245777596816.
+
+Résultats sur le Validation Set :
+
+| Métrique | Avant | Après |
+|---|---:|---:|
+| Precision | 94,64 % | 80,82 % |
+| Recall | 74,65 % | 83,10 % |
+| F1-score | 83,47 % | 81,94 % |
+| F2-score | 77,94 % | 82,63 % |
+| Fraudes détectées | 53 | 59 |
+| Fraudes manquées | 18 | 12 |
+| Fausses alertes | 3 | 14 |
+
+L'optimisation du seuil a permis de détecter six fraudes supplémentaires sur le jeu de validation, sans réentraîner le modèle.
+
+==================================================
+**11. ÉVALUATION FINALE SUR LE TEST SET**
+==================================================
+
+Modèle définitif : Random Forest Balanced.
+
+Nombre de transactions évaluées : 42 559.
+
+Nombre de transactions frauduleuses : 71.
+
+Seuil de décision : environ 0,245777596816.
+
+**Performances finales :**
+
+- Average Precision : 79,49 %.
+- ROC-AUC : 95,04 %.
+- Precision : 73,68 %.
+- Recall : 78,87 %.
+- F1-score : 76,19 %.
+- F2-score : 77,78 %.
+
+**Matrice de confusion :**
+
+| Classe réelle | Légitime prédite | Fraude prédite |
+|---|---:|---:|
+| Légitime | 42 468 | 20 |
+| Fraude | 15 | 56 |
+
+Le modèle détecte 56 des 71 transactions frauduleuses du jeu de test.
+
+Les performances obtenues sur le Test Set sont inférieures à celles du Validation Set, mais restent encourageantes.
+
+Aucun nouvel entraînement ni aucune modification du seuil n'ont été réalisés à partir des résultats du Test Set.
+
+==================================================
+**12. ANALYSE ÉCONOMIQUE**
+==================================================
+
+Une simulation économique a été réalisée à partir des hypothèses suivantes :
+
+- Coût d'un faux positif : 5 euros.
+- Coût d'un faux négatif : 500 euros.
+
+Fonction de coût :
+
+Coût total = 5 × FP + 500 × FN.
+
+Résultats sur le Test Set :
+
+| Indicateur | Seuil initial | Seuil optimisé |
+|---|---:|---:|
+| Fraudes détectées | 54 | 56 |
+| Fraudes manquées | 17 | 15 |
+| Fausses alertes | 9 | 20 |
+| Coût hypothétique | 8 545 € | 7 600 € |
+
+Réduction du coût hypothétique : 945 euros.
+
+Pourcentage de réduction : 11,06 %.
+
+L'optimisation du seuil permet de réduire le coût simulé des erreurs, même si le F2-score reste pratiquement identique sur le Test Set.
+
+Ces montants constituent uniquement des hypothèses pédagogiques et ne représentent pas des gains financiers réellement observés.
+
+==================================================
+**13. EXPORTATION DU MODÈLE**
+==================================================
+
+Le modèle définitif est sauvegardé dans :
+
+exports/frauddetect_v1/
+
+Fichiers disponibles :
+
+- model.joblib : modèle Random Forest entraîné.
+- scaler.joblib : objet de prétraitement.
+- metadata.json : paramètres, seuil et performances.
+- feature_schema.json : description des variables.
+- verification.json : rapport de vérification de l'export.
+- requirements.txt : dépendances du modèle.
+
+L'exportation permet de recharger le modèle sans effectuer de nouvel entraînement.
+
+Le modèle attend des variables prétraitées selon le protocole défini dans le projet.
+
+==================================================
+**14. ORGANISATION TECHNIQUE**
+==================================================
+
+Le projet contient 18 scripts Python.
+
+Principaux dossiers :
+
+- data/ : données brutes et prétraitées.
+- ml/ : scripts de Machine Learning.
+- models/ : modèles expérimentaux.
+- exports/ : modèle définitif.
+- reports/ : graphiques et résultats expérimentaux.
+- docs/ : documentation du projet.
+
+Technologies utilisées :
+
+- Python.
+- Pandas.
+- NumPy.
+- Scikit-learn.
+- XGBoost.
+- Imbalanced-learn.
+- Matplotlib.
+- Seaborn.
+- Joblib.
+- Git et GitHub.
+
+Les datasets volumineux, les modèles expérimentaux et les environnements virtuels sont exclus du dépôt Git grâce au fichier .gitignore.
+
+==================================================
+**15. PRINCIPALES CONCLUSIONS**
+==================================================
+
+Les expérimentations ont permis de mettre en évidence plusieurs observations :
+
+- Aucun algorithme n'est systématiquement supérieur aux autres.
+- Le rééquilibrage des classes ne garantit pas une amélioration des performances.
+- SMOTE n'est pas toujours la meilleure stratégie.
+- Un réseau de neurones ne surpasse pas nécessairement les algorithmes classiques.
+- L'optimisation des hyperparamètres peut produire des résultats inférieurs aux configurations initiales.
+- Le seuil de classification par défaut n'est pas nécessairement optimal.
+- Le choix du meilleur modèle dépend de la métrique et de l'objectif retenus.
+- Une amélioration sur le Validation Set ne garantit pas une amélioration sur le Test Set.
+
+==================================================
+**16. LIMITES DU PROJET**
+==================================================
+
+Les principales limites identifiées sont :
+
+- L'anonymisation des variables V1 à V28 par PCA.
+- L'absence de signification métier des composants anonymisés.
+- L'impossibilité de reconstruire ces composants à partir de transactions bancaires ordinaires avec les informations disponibles.
+- Le faible nombre de transactions frauduleuses dans les ensembles de validation et de test.
+- L'absence de validation sur des données bancaires externes.
+- L'absence de calibration spécifique des scores de prédiction.
+- L'utilisation de coûts financiers hypothétiques.
+
+Le modèle constitue un prototype expérimental et non une solution bancaire prête pour la production.
+
+Le projet a volontairement été limité à la Data Science et au Machine Learning. Aucun backend ni frontend n'a été développé, car les variables anonymisées ne permettent pas de proposer une interface de saisie pertinente pour un utilisateur ordinaire.
+
+==================================================
+**17. PERSPECTIVES D'AMÉLIORATION**
+==================================================
+
+Plusieurs pistes pourraient être étudiées dans de futurs travaux :
+
+- Utilisation de datasets comportant des variables métier interprétables.
+- Calibration des probabilités.
+- Analyse de l'explicabilité des modèles avec SHAP.
+- Validation sur des données externes.
+- Étude de l'évolution des comportements frauduleux.
+- Détection des anomalies par apprentissage non supervisé.
+- Prise en compte de coûts financiers réels.
+
+==================================================
+**18. CONCLUSION GÉNÉRALE**
+==================================================
+
+FraudDetect AI a permis de mettre en œuvre une démarche complète de Machine Learning appliquée à un problème de classification fortement déséquilibré.
+
+Au total, 31 configurations issues de six familles d'algorithmes ont été entraînées et comparées.
+
+Le modèle Random Forest Balanced, associé à un seuil de décision optimisé, a été sélectionné comme modèle définitif selon le F2-score sur le jeu de validation.
+
+Lors de l'évaluation finale, il a obtenu une ROC-AUC de 95,04 %, une Average Precision de 79,49 % et un Recall de 78,87 %.
+
+Ce projet démontre l'importance de la préparation des données, du choix des métriques, de la comparaison expérimentale et de l'optimisation des décisions dans la construction d'un système de Machine Learning.
+
+==================================================
+FIN DE LA SYNTHÈSE
+==================================================

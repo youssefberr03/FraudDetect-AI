@@ -1,0 +1,29 @@
+{
+    "parameters": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "entropy",
+        "max_depth": 8,
+        "max_features": 0.3,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 2,
+        "min_samples_split": 10,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 200,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+    },
+    "selected_trial": "Trial 18",
+    "mean_cv_ap": 0.8454641960089321,
+    "std_cv_ap": 0.0028243213592177856,
+    "training_time": 84.53884790005395,
+    "total_search_time": 2021.4916320000193,
+    "classification_threshold": 0.5
+}

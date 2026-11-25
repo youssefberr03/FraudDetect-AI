@@ -1,0 +1,8 @@
+{
+    "samples_tested": 1000,
+    "checksum_valid": true,
+    "scores_identical": true,
+    "predictions_identical": true,
+    "maximum_score_difference": 1.1102230246251565e-16,
+    "verification_successful": true
+}
